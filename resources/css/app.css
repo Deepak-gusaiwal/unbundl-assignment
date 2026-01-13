@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* 🎨 Primary (Cool Indigo / Blue) */
+    --color-primary-50: #eef2ff;
+    --color-primary-100: #e0e7ff;
+    --color-primary-200: #c7d2fe;
+    --color-primary-300: #a5b4fc;
+    --color-primary-400: #818cf8;
+    --color-primary-500: #6366f1;
+    /* main */
+    --color-primary-600: #4f46e5;
+    --color-primary-700: #4338ca;
+    --color-primary-800: #3730a3;
+    --color-primary-900: #312e81;
+
+    /* 🌿 Secondary (Teal / Mint) */
+    --color-secondary-50: #ecfeff;
+    --color-secondary-100: #cffafe;
+    --color-secondary-200: #a5f3fc;
+    --color-secondary-300: #67e8f9;
+    --color-secondary-400: #22d3ee;
+    --color-secondary-500: #06b6d4;
+    /* main */
+    --color-secondary-600: #0891b2;
+    --color-secondary-700: #0e7490;
+    --color-secondary-800: #155e75;
+    --color-secondary-900: #164e63;
+
+    /* ⚫ Neutral / UI Gray */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+}
+
+/* dashboardLeftContainer */
+.dashboardLeftContainer .sideBar {
+    @apply flex flex-col;
+}
+
+.dashboardLeftContainer .sideBar a {
+    @apply capitalize bg-primary-50 text-primary-500 font-bold border-b-2 border-b-gray-50 flex gap-2 p-2 relative isolate overflow-hidden;
+}
+
+.dashboardLeftContainer .sideBar a::before {
+    content: "";
+    @apply absolute w-full h-full bg-primary-500 -z-10 top-0 left-0 -translate-x-full duration-300;
+}
+
+.dashboardLeftContainer .sideBar a:not(.active):hover:before {
+    content: "";
+    @apply translate-x-0;
+}
+
+.dashboardLeftContainer .sideBar a:hover {
+    content: "";
+    @apply text-white;
+}
+
+.dashboardLeftContainer .sideBar a.active {
+    @apply bg-primary-600 text-white;
+}
+
+/*tab layout topLinks */
+.topLinks {
+    @apply flex gap-2;
+}
+
+.topLinks a {
+    @apply capitalize bg-primary-50 text-primary-500 font-bold border-b-2 border-b-gray-50 flex gap-2 relative isolate overflow-hidden text-sm rounded-full px-3 py-2 shadow-sm;
+}
+
+.topLinks a.active {
+    @apply bg-primary-600 text-white;
+}
+
+/* data table css */
+
+.dataTable {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.dataTable,
+th,
+td {
+    @apply p-1 border-secondary-600 border-2;
+}
+
+table.dataTable td {
+    @apply overflow-y-auto;
+}
+
+.dataTable th:nth-child(1),
+.dataTable td:nth-child(1) {
+    width: 30px;
+    /* Checkbox column */
+    @apply p-0;
+}
+
+.dataTable td:nth-child(1) label {
+    height: 30px;
+}
+
+.dataTable th:nth-child(6),
+.dataTable td:nth-child(6) {
+    width: 150px;
+    /* Checkbox column */
+    text-align: center;
+}
+
+.dataTable th:nth-child(2),
+.dataTable td:nth-child(2) {
+    width: 50px;
+    /* Checkbox column */
+    text-align: center;
+    overflow: visible;
+    /* Prevent checkbox clipping */
+}
+
+.dataTable th:nth-child(3),
+.dataTable td:nth-child(3) {
+    width: 120px;
+    /* Checkbox column */
+    text-align: center;
+}
