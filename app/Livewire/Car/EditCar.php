@@ -12,8 +12,12 @@ use Masmerise\Toaster\Toaster;
 class EditCar extends Component
 {
     public $carSlug;
-    public $carData, $title, $slug, $thumbnail, $categories = [];
+    public $carData, $title, $slug, $thumbnail, $categories = [], $isFeatured = false;
 
+    public function toggleFeatured()
+    {
+        $this->isFeatured = !$this->isFeatured;
+    }
     // slug generator function 
     private function generateUniqueSlug($slug, $model, $id, $column = 'slug')
     {
@@ -48,6 +52,7 @@ class EditCar extends Component
             $this->title = $car->title;
             $this->slug = $car->slug;
             $this->thumbnail = $car->thumbnail;
+            $this->isFeatured = $car->is_featured;
             $this->categories = $car->categories->pluck('id');
             //to load image in form
             $this->dispatch('loadSelectedThbmbnailImage', $this->thumbnail);
@@ -62,6 +67,7 @@ class EditCar extends Component
             'title' => 'required|string|unique:car_categories,title,' . $this->carData->id,
             'slug' => 'required|string',
             'thumbnail' => 'required|exists:images,id',
+            'isFeatured' => 'nullable|boolean',
             'categories' => 'required|array|min:1',
             'categories.*' => 'exists:car_categories,id',
         ]);
@@ -72,10 +78,11 @@ class EditCar extends Component
                 Toaster::error("Car not found.");
                 return;
             }
-            $car->update([ 
+            $car->update([
                 'title' => $validatedData['title'],
                 'slug' => $validatedData['slug'],
                 'thumbnail' => $validatedData['thumbnail'],
+                'is_featured' => $validatedData['isFeatured'] ?? true,
             ]);
             $car->categories()->sync($this->categories);
             $this->reset();

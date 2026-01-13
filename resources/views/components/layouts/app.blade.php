@@ -20,6 +20,7 @@
         {{ $slot }}
     </div>
     <livewire:components.footer.footer />
+    <livewire:enquiry.enquiry-modal />
     @livewireScripts
     @vite(['resources/js/app.js'])
 </body>

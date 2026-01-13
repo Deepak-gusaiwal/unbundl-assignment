@@ -19,8 +19,8 @@
     <livewire:components.header.header />
     <x-toaster-hub />
     <div class="mainWrapper max-w-[1550px] mx-auto grid md:grid-cols-6">
-        <div class="md:col-span-1 dashboardLeftContainer sticky top-0 h-full">
-            <div class="sideBar sticky top-[calc(var(--headerHeight)+5px)]">
+        <div class="md:col-span-1 dashboardLeftContainer h-full w-full overflow-x-auto">
+            <div class="sideBar md:sticky md:top-[calc(var(--headerHeight)+5px)] py-1">
                 @if (auth()->user()->is_admin)
                     <!-- media url -->
                     <a href="{{route('admin.dashboard')}}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" > <i class="ri-file-image-fill"></i>dashboard</a>
@@ -31,6 +31,9 @@
                     <a href="{{route('admin.car.create')}}" class="{{ 
                     request()->routeIs('admin.car','admin.car.create','admin.car.edit') ? 
                     'active' : '' }}" > <i class="ri-file-image-fill"></i>Car</a>
+                    <a href="{{route('admin.enquiry')}}" class="{{ 
+                    request()->routeIs('admin.enquiry') ? 
+                    'active' : '' }}" > <i class="ri-file-image-fill"></i>Enquiry</a>
                 @endif
             </div>
         </div>

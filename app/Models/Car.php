@@ -12,12 +12,13 @@ class Car extends Model
         'title',
         'slug',
         'thumbnail',
+        'is_featured'
     ];
     public function thumbnailImage(): BelongsTo
     {
         return $this->belongsTo(Image::class, 'thumbnail');
     }
-     public function categories(): BelongsToMany
+    public function categories(): BelongsToMany
     {
         return $this->belongsToMany(
             CarCategory::class,

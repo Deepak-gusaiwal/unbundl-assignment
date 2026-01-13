@@ -48,11 +48,11 @@
 
 /* dashboardLeftContainer */
 .dashboardLeftContainer .sideBar {
-    @apply flex flex-col;
+    @apply flex md:flex-col;
 }
 
 .dashboardLeftContainer .sideBar a {
-    @apply capitalize bg-primary-50 text-primary-500 font-bold border-b-2 border-b-gray-50 flex gap-2 p-2 relative isolate overflow-hidden;
+    @apply capitalize bg-primary-50 text-primary-500 font-bold border-b-2 border-b-gray-50 flex gap-2 p-2 relative isolate overflow-hidden shrink-0;
 }
 
 .dashboardLeftContainer .sideBar a::before {
@@ -138,3 +138,18 @@ table.dataTable td {
     /* Checkbox column */
     text-align: center;
 }
+
+/* topLinks */
+.topLinks {
+    @apply overflow-x-auto pb-2;
+}
+
+.topLinks a {
+    @apply shrink-0;
+}
+
+/* twoColTable */
+.twoColTable {
+    @apply w-full;
+}
+

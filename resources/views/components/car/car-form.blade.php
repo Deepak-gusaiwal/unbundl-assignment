@@ -12,7 +12,21 @@
                 @error('thumbnail')
                     <p class="text-red-500 italic mt-1 text-sm">{{$message}}</p>
                 @enderror
+                <!-- featured -->
+                 <div class="flex items-center gap-2 my-2">
 
+                        <span wire:click="toggleFeatured"
+                            class="relative inline-flex items-center h-6 rounded-full w-11 focus:outline-none transition cursor-pointer hover:opacity-80">
+                            <span
+                                class="{{ $isFeatured ? 'bg-yellow-500' : 'bg-gray-300' }} absolute inset-0 rounded-full"></span>
+                            <span
+                                class="{{ $isFeatured ? 'translate-x-6 bg-white' : 'translate-x-1 bg-gray-500' }} inline-block w-4 h-4 transform rounded-full transition-transform"></span>
+                        </span>
+                        <span class="text-xs flex justify-center items-start gap-2">
+                            <x-helper.loading target="toggleFeatured" />
+                            {{ $isFeatured ? 'Featured' : 'Not Featured' }}
+                        </span>
+                    </div>
                 <!-- car categories -->
                 <div>
                     <h2 class="text-center text-primary-500 font-bold capitalize mt-2 bg-primary-50 py-2">Select

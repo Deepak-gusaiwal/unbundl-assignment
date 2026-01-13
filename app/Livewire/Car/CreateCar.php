@@ -11,7 +11,7 @@ use Masmerise\Toaster\Toaster;
 
 class CreateCar extends Component
 {
-    public $title, $slug, $thumbnail, $categories = [];
+    public $title, $slug, $thumbnail, $categories = [], $isFeatured = false;
     // generate slug on title update
     public function updatedTitle($value)
     {
@@ -30,6 +30,10 @@ class CreateCar extends Component
 
         return $slug;
     }
+    public function toggleFeatured()
+    {
+        $this->isFeatured = !$this->isFeatured;
+    }
     public function createCar()
     {
         $this->slug = Str::slug($this->slug);
@@ -37,10 +41,10 @@ class CreateCar extends Component
             'title' => 'required|string|unique:car_categories,title',
             'slug' => 'required|string|unique:car_categories,slug',
             'thumbnail' => 'required|exists:images,id',
+            'isFeatured' => 'nullable|boolean',
             'categories' => 'required|array|min:1',
             'categories.*' => 'exists:car_categories,id',
         ]);
-
         try {
             $validatedData['slug'] = $this->generateUniqueSlug($this->slug, Car::class);
 
@@ -48,6 +52,7 @@ class CreateCar extends Component
                 'title' => $validatedData['title'],
                 'slug' => $validatedData['slug'],
                 'thumbnail' => $validatedData['thumbnail'],
+                'is_featured' => $validatedData['isFeatured'] ?? true,
             ]);
             $car->categories()->attach($this->categories);
             // Reset the form data

@@ -10,14 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->boolean('is_featured')->default(false);
-            $table->string('thumbnail');
+            $table->string('site_name')->default('Site Name');
+            $table->string('header_logo')->nullable();
             $table->timestamps();
         });
+        DB::table('site_settings')->insert([
+            'site_name' => 'Default Site Name',
+            'header_logo' => null,
+        ]);
     }
 
     /**
@@ -25,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('site_settings');
     }
 };
