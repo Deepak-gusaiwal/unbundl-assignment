@@ -2,7 +2,7 @@
     'inputBoxStyle' => '',
     'label' => '',
     'type' => 'text',
-    'live' => 'false'
+    'live' => 'false' 
 ])
 
 @php
