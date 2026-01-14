@@ -9,6 +9,10 @@ use Livewire\WithPagination;
 class CarIndex extends Component
 {
     use WithPagination;
+        public function enquiryNow($carId)
+    {
+        $this->dispatch('openEnquiryModal', $carId);
+    }
     public function render()
     {
         $cars = Car::with('thumbnailImage')

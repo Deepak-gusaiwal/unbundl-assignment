@@ -7,7 +7,7 @@
     <form class="bg-secondary-600 p-2">
         <x-form.input name="search" id="search" placeholder="search" live="true" />
     </form>
-
+<div class="tableContainer">
     <table class="dataTable">
         <tr class="bg-secondary-600 text-white capitalize">
             <th></th>
@@ -49,16 +49,14 @@
                             class="p-1 text-yellow-500 bg-slate-100 hover:bg-yellow-200 capitalize  rounded-md">
                             <i class="ri-pencil-fill"></i>
                         </a>
-                        <a wire:navigate href="#"
-                            class="p-1 text-blue-500 bg-slate-100 hover:bg-blue-200 capitalize  rounded-md">
-                            <i class="ri-eye-fill"></i>
-                        </a>
+                    
                     </div>
                 </td>
             </tr>
         @endforeach
 
     </table>
+    </div>
     @if ($selectedCars) {{-- Correct check --}}
         <x-form.button wire:click="bulkDelete" wire:confirm="Are you sure you want to delete selected cars?"
             class="mt-2">

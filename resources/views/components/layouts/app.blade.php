@@ -22,6 +22,7 @@
     <livewire:components.footer.footer />
     <livewire:enquiry.enquiry-modal />
     @livewireScripts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     @vite(['resources/js/app.js'])
 </body>
 

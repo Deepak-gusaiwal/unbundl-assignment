@@ -7,31 +7,30 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    /* 🎨 Primary (Cool Indigo / Blue) */
-    --color-primary-50: #eef2ff;
-    --color-primary-100: #e0e7ff;
-    --color-primary-200: #c7d2fe;
-    --color-primary-300: #a5b4fc;
-    --color-primary-400: #818cf8;
-    --color-primary-500: #6366f1;
-    /* main */
-    --color-primary-600: #4f46e5;
-    --color-primary-700: #4338ca;
-    --color-primary-800: #3730a3;
-    --color-primary-900: #312e81;
+    --color-primary-50: #fff1f2;
+    --color-primary-100: #ffe4e6;
+    --color-primary-200: #fecdd3;
+    --color-primary-300: #fda4af;
+    --color-primary-400: #fb7185;
+    --color-primary-500: #e11d48;
+    /* MAIN */
+    --color-primary-600: #be123c;
+    --color-primary-700: #9f1239;
+    --color-primary-800: #881337;
+    --color-primary-900: #4c0519;
 
-    /* 🌿 Secondary (Teal / Mint) */
-    --color-secondary-50: #ecfeff;
-    --color-secondary-100: #cffafe;
-    --color-secondary-200: #a5f3fc;
-    --color-secondary-300: #67e8f9;
-    --color-secondary-400: #22d3ee;
-    --color-secondary-500: #06b6d4;
-    /* main */
-    --color-secondary-600: #0891b2;
-    --color-secondary-700: #0e7490;
-    --color-secondary-800: #155e75;
-    --color-secondary-900: #164e63;
+
+    --color-secondary-50: #f1f5f9;
+    --color-secondary-100: #e2e8f0;
+    --color-secondary-200: #cbd5e1;
+    --color-secondary-300: #94a3b8;
+    --color-secondary-400: #64748b;
+    --color-secondary-500: #334155;
+    /* MAIN */
+    --color-secondary-600: #1e293b;
+    --color-secondary-700: #0f172a;
+    --color-secondary-800: #020617;
+    --color-secondary-900: #020617;
 
     /* ⚫ Neutral / UI Gray */
     --color-gray-50: #f9fafb;
@@ -44,6 +43,132 @@
     --color-gray-700: #374151;
     --color-gray-800: #1f2937;
     --color-gray-900: #111827;
+}
+
+html,
+body {
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.no-scroll {
+    overflow-y: hidden !important;
+}
+
+.main-heading {
+    position: relative;
+    display: flex;
+    padding-bottom: 0.75rem;
+    width: fit-content;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    @apply mb-4;
+}
+
+/* glowing underline */
+.main-heading::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 65%;
+    height: 4px;
+    border-radius: 999px;
+
+    background: linear-gradient(90deg,
+            var(--color-primary-500),
+            var(--color-primary-400),
+            var(--color-secondary-500));
+
+    box-shadow:
+        0 0 10px rgba(238, 44, 76, 0.6),
+        0 0 20px rgba(29, 91, 143, 0.4);
+
+    animation: underlineGlow 3s ease-in-out infinite;
+}
+
+/* decorative top accent */
+.main-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -14px;
+
+    width: 40px;
+    height: 6px;
+    border-radius: 999px;
+
+    background: var(--color-primary-500);
+
+    box-shadow: 0 0 15px rgba(238, 44, 131, 0.637);
+}
+
+/* underline animation */
+@keyframes underlineGlow {
+    0% {
+        width: 40%;
+        opacity: 0.6;
+    }
+
+    50% {
+        width: 70%;
+        opacity: 1;
+    }
+
+    100% {
+        width: 40%;
+        opacity: 0.6;
+    }
+}
+
+/* mainWrapper */
+.mainWrapper {
+    min-height: calc(100vh - 60px);
+}
+
+/* header css */
+.headerWrapper .menu a {
+    @apply flex justify-center items-center shrink-0 w-fit font-semibold px-2 py-1 relative isolate overflow-hidden duration-300;
+}
+
+.headerWrapper .menu a:hover {
+    @apply bg-primary-50;
+}
+
+.headerWrapper .menu a.active {
+    @apply bg-secondary-50;
+}
+
+.headerWrapper .menu a::before {
+    content: "";
+    transform: scaleX(0);
+    transform-origin: right;
+    @apply absolute bottom-0 left-0 w-full h-1 bg-primary-500 transition-transform duration-300;
+}
+
+.headerWrapper .menu a.active::before {
+    transform: scaleX(1);
+    @apply bg-secondary-500;
+}
+
+.headerWrapper .menu a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* menu css */
+@media (max-width:768px) {
+    .headerWrapper .menu {
+        @apply absolute top-0 left-0 pt-[60px] w-full bg-white flex-col h-screen z-10 translate-x-full duration-300;
+    }
+
+    .headerWrapper .menu.active {
+        @apply translate-x-0;
+    }
 }
 
 /* dashboardLeftContainer */
@@ -76,22 +201,30 @@
 
 /*tab layout topLinks */
 .topLinks {
-    @apply flex gap-2;
+    @apply flex gap-2 md:py-0 py-2;
 }
 
 .topLinks a {
-    @apply capitalize bg-primary-50 text-primary-500 font-bold border-b-2 border-b-gray-50 flex gap-2 relative isolate overflow-hidden text-sm rounded-full px-3 py-2 shadow-sm;
+    @apply capitalize bg-secondary-50 text-secondary-500 font-bold border-b-2 border-b-gray-50 flex gap-2 relative isolate overflow-hidden text-sm rounded-full px-3 py-2 shadow-sm;
 }
 
 .topLinks a.active {
-    @apply bg-primary-600 text-white;
+    @apply bg-secondary-600 text-white;
 }
 
 /* data table css */
+.tableContainer {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* smooth scroll on mobile */
+    max-width: 100%;
+}
 
 .dataTable {
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: auto;
+    min-width: 600px;
     width: 100%;
 }
 
@@ -153,3 +286,98 @@ table.dataTable td {
     @apply w-full;
 }
 
+/* hero banner css */
+
+.cButton {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold uppercase text-white bg-primary-500 transition-all duration-300 ease-in-out shadow-md rounded-full text-center cursor-pointer;
+}
+
+/* hover effect */
+.cButton:hover {
+    @apply bg-primary-600 shadow-lg;
+    transform: translateY(-2px);
+}
+
+/* icon animation */
+.cButton i {
+    @apply text-lg transition-transform duration-300;
+}
+
+.cButton:hover i {
+    transform: translateX(4px);
+}
+
+/* focus (accessibility) */
+.cButton:focus-visible {
+    @apply outline-none ring-2 ring-primary-300 ring-offset-2;
+}
+
+/* optional secondary glow */
+.cButton {
+    box-shadow:
+        0 6px 20px rgba(238, 102, 44, 0.35);
+}
+
+.heroLeft .content h2 span,
+.heroLeft .content h3 span {
+    background: linear-gradient(90deg,
+            var(--color-primary-500),
+            var(--color-primary-600),
+            var(--color-secondary-500),
+            var(--color-secondary-400),
+            var(--color-primary-700));
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: gradientMove 5s ease infinite;
+}
+
+/* animation */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* ============================
+   Category Card
+============================ */
+.card {
+    @apply flex flex-col justify-center text-center bg-gray-50 rounded-md p-2 relative isolate;
+}
+
+.card::before {
+    content: "";
+    background: radial-gradient(circle at center,
+            var(--color-primary-500),
+            transparent 50%);
+    filter: blur(20px);
+    @apply w-full h-full absolute top-0 left-0 -z-30 rounded-full scale-0 duration-300;
+}
+
+.card:hover:before {
+    @apply scale-100;
+}
+
+.card .imgBox img {
+    @apply w-full h-full object-contain duration-300;
+}
+
+.card:hover .imgBox img {
+    @apply scale-110;
+}
+
+.card h3 {
+    @apply w-full text-center text-secondary-700 font-bold uppercase md:text-2xl text-xl my-2;
+}

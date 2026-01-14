@@ -1,6 +1,6 @@
 <div>
     @if ($selectedThumbnailImage)
-        <div class="imgBox max-w-[100px] my-2 overflow-hidden bg-primary-500 p-2 rounded-md">
+        <div class="imgBox max-w-[100px] my-2 overflow-hidden bg-gray-50 p-2 rounded-md">
             <img class="w-full h-full object-cover" src="{{ asset('storage/uploads/' . $selectedThumbnailImage['path']) }}"
                 alt="{{$selectedThumbnailImage['alt']}}" title="{{$selectedThumbnailImage['title']}}">
         </div>
