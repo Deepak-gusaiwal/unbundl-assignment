@@ -1,0 +1,26 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-Da2FT9EO.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/dropzone.css": {
+    "file": "assets/dropzone-vj24eE0j.css",
+    "src": "resources/css/dropzone.css",
+    "isEntry": true,
+    "name": "dropzone",
+    "names": [
+      "dropzone.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Cs_RZkjq.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
